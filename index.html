@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10120f">
+  <meta name="description" content="OTO ($OTO) — we cry together, we rise together. A community-powered meme coin.">
+  <title>OTO — We Cry Together</title>
+  <style>
+    :root {
+      --bg: #10120f;
+      --panel: #191c17;
+      --green: #c7ff4f;
+      --cream: #f4f2e9;
+      --muted: #a6aa9e;
+      --line: rgba(244,242,233,.14);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--cream);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    header {
+      display:flex; justify-content:space-between; align-items:center; gap:20px;
+      padding: 22px 0; border-bottom: 1px solid var(--line);
+    }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:950; font-size:1.3rem; letter-spacing:-.04em; }
+    .brand-mark { display:grid; place-items:center; width:38px; height:38px; border-radius:12px; background:var(--green); color:#111; font-size:1.25rem; }
+    nav { display:flex; align-items:center; gap:26px; color:var(--muted); font-size:.92rem; }
+    nav a:hover { color:var(--green); }
+    .button {
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      border-radius:999px; padding:13px 20px; font-weight:850; font-size:.92rem;
+      background:var(--green); color:#10120f; border:1px solid var(--green);
+      transition:transform .2s, background .2s;
+    }
+    .button:hover { transform:translateY(-2px); background:#d8ff86; }
+    .button.ghost { background:transparent; color:var(--cream); border-color:var(--line); }
+    .button.ghost:hover { border-color:var(--green); color:var(--green); }
+    .hero { display:grid; grid-template-columns:1.1fr .9fr; align-items:center; gap:42px; padding:76px 0 70px; }
+    .eyebrow { display:inline-flex; align-items:center; gap:8px; color:var(--green); font-weight:850; text-transform:uppercase; letter-spacing:.13em; font-size:.76rem; }
+    .dot { width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 15px #c7ff4f; }
+    h1 { margin:18px 0; font-size:clamp(3.6rem, 8vw, 6.8rem); line-height:.88; letter-spacing:-.085em; }
+    h1 span { color:var(--green); }
+    .lead { max-width:520px; color:var(--muted); font-size:1.12rem; line-height:1.7; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin:28px 0 22px; }
+    .contract { display:flex; flex-wrap:wrap; align-items:center; gap:10px; color:var(--muted); font-size:.82rem; }
+    .contract code { color:var(--cream); background:var(--panel); padding:9px 12px; border:1px solid var(--line); border-radius:8px; overflow-wrap:anywhere; }
+    .art-card { position:relative; background:radial-gradient(circle at 50% 30%, #34392c, #191c17 60%); border:1px solid var(--line); border-radius:30px; padding:18px; min-height:420px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .art-card:before { content:""; position:absolute; width:260px; height:260px; border:1px solid rgba(199,255,79,.25); border-radius:50%; }
+    .art-card:after { content:"$OTO"; position:absolute; right:24px; top:22px; font-size:.8rem; font-weight:900; letter-spacing:.12em; color:var(--green); }
+    .character { width:min(100%, 390px); max-height:450px; object-fit:contain; border-radius:18px; position:relative; z-index:1; mix-blend-mode:normal; }
+    .art-placeholder { display:none; position:relative; z-index:1; text-align:center; font-size:7rem; }
+    .ticker { border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; white-space:nowrap; padding:15px 0; color:var(--green); font-weight:900; letter-spacing:.12em; font-size:.82rem; }
+    .ticker span { margin:0 22px; }
+    section { padding:76px 0; }
+    .section-head { max-width:650px; margin-bottom:30px; }
+    .section-head h2 { font-size:clamp(2.3rem,5vw,4rem); letter-spacing:-.07em; line-height:.98; margin:12px 0; }
+    .section-head p { color:var(--muted); line-height:1.7; }
+    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:25px; }
+    .card .emoji { font-size:1.8rem; }
+    .card h3 { margin:18px 0 8px; font-size:1.15rem; }
+    .card p { margin:0; color:var(--muted); line-height:1.65; font-size:.94rem; }
+    .token-grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:20px; }
+    .token-feature { background:var(--green); color:#11140d; border-radius:24px; padding:32px; }
+    .token-feature h2 { margin:12px 0; font-size:3rem; letter-spacing:-.07em; }
+    .token-feature p { line-height:1.6; max-width:420px; }
+    .token-list { display:grid; gap:12px; }
+    .token-row { display:flex; justify-content:space-between; gap:20px; padding:20px; background:var(--panel); border:1px solid var(--line); border-radius:15px; }
+    .token-row span { color:var(--muted); }
+    .roadmap { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; }
+    .phase { border-top:3px solid var(--green); }
+    .phase small { color:var(--green); font-weight:900; letter-spacing:.1em; }
+    .phase h3 { font-size:1.3rem; }
+    .phase p { color:var(--muted); line-height:1.7; }
+    .community { text-align:center; background:linear-gradient(135deg,#20251a,#151812); border:1px solid var(--line); border-radius:28px; padding:55px 25px; }
+    .community h2 { font-size:clamp(2.4rem,6vw,4.8rem); letter-spacing:-.08em; line-height:.95; margin:12px 0; }
+    .community p { color:var(--muted); line-height:1.7; max-width:550px; margin:16px auto 25px; }
+    footer { border-top:1px solid var(--line); padding:25px 0 35px; display:flex; justify-content:space-between; gap:18px; color:var(--muted); font-size:.82rem; }
+    .disclaimer { font-size:.75rem; color:#858a7d; line-height:1.6; max-width:700px; margin-top:18px; }
+    @media (max-width:760px) {
+      .wrap { width:min(100% - 28px, 600px); }
+      nav { display:none; }
+      .hero { grid-template-columns:1fr; padding:52px 0; gap:28px; }
+      .art-card { min-height:320px; }
+      .character { max-height:350px; }
+      .cards,.roadmap,.token-grid { grid-template-columns:1fr; }
+      section { padding:55px 0; }
+      footer { flex-direction:column; }
+      .contract { align-items:flex-start; flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <a class="brand" href="#home"><span class="brand-mark">😭</span> OTO <span style="color:var(--green)">$OTO</span></a>
+    <nav>
+      <a href="#about">About</a><a href="#tokenomics">Tokenomics</a><a href="#roadmap">Roadmap</a><a href="#community">Community</a>
+    </nav>
+    <a class="button" href="#community">Join the Army ↗</a>
+  </header>
+
+  <main>
+    <div class="wrap hero" id="home">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> The meme coin for the down bad</div>
+        <h1>WE CRY.<br>WE <span>HODL.</span></h1>
+        <p class="lead">Meet OTO — the face of every red portfolio and every dream that refuses to die. We cry together, we rise together. 😭</p>
+        <div class="actions">
+          <a class="button" href="#buy">Buy $OTO ↗</a>
+          <a class="button ghost" href="#about">Meet OTO</a>
+        </div>
+        <div class="contract"><span>CONTRACT ADDRESS</span><code id="contract">Add your token contract here</code><button class="button ghost" style="padding:8px 12px" onclick="copyContract()">Copy</button></div>
+      </div>
+      <div class="art-card">
+        <img class="character" src="oto-character.jpeg" alt="OTO crying character" onerror="this.style.display='none';document.querySelector('.art-placeholder').style.display='block'">
+        <div class="art-placeholder">😭</div>
+      </div>
+    </div>
+
+    <div class="ticker"><span>😭 $OTO</span> • <span>WE CRY TOGETHER</span> • <span>WE RISE TOGETHER</span> • <span>MEMES FOREVER</span> • <span>😭 $OTO</span></div>
+
+    <section class="wrap" id="about">
+      <div class="section-head">
+        <div class="eyebrow">01 / The story</div>
+        <h2>Red charts.<br>Real tears. <span style="color:var(--green)">One community.</span></h2>
+        <p>Crypto can be a rollercoaster. OTO turns those painful dips into a reason to laugh, create memes, and connect with fellow degens. No promises — just memes and community.</p>
+      </div>
+      <div class="cards">
+        <article class="card"><div class="emoji">😭</div><h3>Born from the pain</h3><p>For everyone who has watched a chart go red and still found a way to laugh.</p></article>
+        <article class="card"><div class="emoji">🤝</div><h3>Community first</h3><p>A place for meme-makers, dreamers, and crypto people who get the joke.</p></article>
+        <article class="card"><div class="emoji">🚀</div><h3>Memes over promises</h3><p>We build through creativity, participation, and a shared love of internet culture.</p></article>
+      </div>
+    </section>
+
+    <section class="wrap" id="tokenomics">
+      <div class="token-grid">
+        <div class="token-feature">
+          <div class="eyebrow" style="color:#26320e">02 / Token details</div>
+          <h2>Simple.<br>Memeable.</h2>
+          <p>Fill in the verified token information before launch. Keep details transparent and easy for the community to check.</p>
+        </div>
+        <div class="token-list">
+          <div class="token-row"><span>Token name</span><strong>OTO</strong></div>
+          <div class="token-row"><span>Ticker</span><strong>$OTO</strong></div>
+          <div class="token-row"><span>Network</span><strong>Solana — confirm before launch</strong></div>
+          <div class="token-row"><span>Total supply</span><strong>Add confirmed supply</strong></div>
+          <div class="token-row"><span>Contract / Mint</span><strong>Not added yet</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" id="roadmap">
+      <div class="section-head">
+        <div class="eyebrow">03 / The plan</div>
+        <h2>Small steps.<br><span style="color:var(--green)">Big memes.</span></h2>
+        <p>A starter roadmap concept. Update each phase to reflect real progress; don't present plans as completed milestones.</p>
+      </div>
+      <div class="roadmap">
+        <article class="card phase"><small>PHASE 01</small><h3>First Tears</h3><p>Launch the website, establish the visual identity, and open community channels.</p></article>
+        <article class="card phase"><small>PHASE 02</small><h3>Meme Season</h3><p>Community meme contests, original content, and organic social growth.</p></article>
+        <article class="card phase"><small>PHASE 03</small><h3>Rise Together</h3><p>Explore community collaborations and new ideas based on community feedback.</p></article>
+      </div>
+    </section>
+
+    <section class="wrap" id="community">
+      <div class="community">
+        <div class="eyebrow"><span class="dot"></span> The OTO Army</div>
+        <h2>THE TEARS ARE<br><span style="color:var(--green)">TEMPORARY.</span></h2>
+        <p>The memes are forever. Join the community, share your best OTO memes, and remember: nobody cries alone.</p>
+        <div class="actions" style="justify-content:center">
+          <a class="button" href="https://x.com/" target="_blank" rel="noreferrer">Follow on X ↗</a>
+          <a class="button ghost" href="https://t.me/" target="_blank" rel="noreferrer">Join Telegram ↗</a>
+          <a class="button ghost" id="buy" href="#tokenomics">Buy $OTO ↗</a>
+        </div>
+        <div class="disclaimer">Disclaimer: $OTO is a meme coin concept for entertainment and community engagement. Crypto assets are volatile and may lose all value. This website does not promise returns. Replace placeholder links and token details with verified information before publishing.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <a class="brand" href="#home"><span class="brand-mark">😭</span> OTO <span style="color:var(--green)">$OTO</span></a>
+    <span>© <span id="year"></span> OTO Meme Coin. All memes reserved.</span>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    function copyContract() {
+      const value = document.getElementById('contract').textContent.trim();
+      if (value === 'Add your token contract here' || value === 'Not added yet') {
+        alert('Add your real token contract address in index.html first.');
+        return;
+      }
+      navigator.clipboard.writeText(value).then(() => alert('Contract address copied!')).catch(() => alert('Please copy the contract address manually.'));
+    }
+  </script>
+</body>
+</html>
